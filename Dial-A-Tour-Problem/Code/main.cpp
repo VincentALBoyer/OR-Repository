@@ -51,10 +51,6 @@ int main(int argc, char* argv[])
         P->displayErrors();
         exit(20);
     }
-    else if (!P->hasInstance()){
-        Instance::genRequiredFile(P);
-        exit(30);
-    }
     
     Instance* I = new Instance(P);
 
