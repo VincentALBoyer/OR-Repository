@@ -6,14 +6,13 @@
 #include "CPSolver.h"
 #include "MILPSolver.h"
 #include "Greedy.h"
-#include "Hybrid.h"
 #include "LocalSearch.h"
 
 Solver* getSolver(SolverAlgo A, Instance* I) {
-    if (A == SolverAlgo::MILP1 || A == SolverAlgo::MILP2 || A == SolverAlgo::MILP3) return new MILPSolver(I, A);
-    else if (A == SolverAlgo::CP1 || A == SolverAlgo::CP2 || A == SolverAlgo::CP3) return new CPSolver(I, A);
-    else if (A == SolverAlgo::Greedy1 || A == SolverAlgo::Greedy2) return new Greedy(I,A);
-    else if (A == SolverAlgo::LS ) return new LocalSearch(new Greedy(I,SolverAlgo::Greedy1));
+    if (A == SolverAlgo::MILP3) return new MILPSolver(I, A);
+    else if (A == SolverAlgo::CP1 || A == SolverAlgo::CP2) return new CPSolver(I, A);
+    else if (A == SolverAlgo::Greedy2) return new Greedy(I,A);
+    else if (A == SolverAlgo::LS ) return new LocalSearch(new Greedy(I,SolverAlgo::Greedy2));
     else return NULL;
 }
 
@@ -32,10 +31,6 @@ Solver* getSolver(Parameter* P,Instance* I) {
         }
         else S = S2;
     }
-    else {
-        S= new Hybrid(S1, S2);
-    }
-
     return S;
 }
 
