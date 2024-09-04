@@ -15,7 +15,6 @@ Solver* getSolver(SolverAlgo A, Instance* I) {
     else if (A == SolverAlgo::Greedy1 || A == SolverAlgo::Greedy2) return new Greedy(I,A);
     else if (A == SolverAlgo::LS ) return new LocalSearch(new Greedy(I,SolverAlgo::Greedy1));
     else return NULL;
-
 }
 
 Solver* getSolver(Parameter* P,Instance* I) {
@@ -46,7 +45,6 @@ int main(int argc, char* argv[])
     P->print();
 
     if (P->isHelpRequired()) {
-        //P->print();
         exit(10);
     }
     else if (P->hasErrors()) {
@@ -58,14 +56,7 @@ int main(int argc, char* argv[])
         exit(30);
     }
     
-   
     Instance* I = new Instance(P);
-    //I->print();
-
-    //I->save(P->getParamValue(ParamCompObject::instance)+"_m");
-
-    //Solver::setLB(I, LBAlgo::CP);
-
 
     Solver* H = getSolver(P,I);
     if (H == NULL) {
@@ -73,8 +64,6 @@ int main(int argc, char* argv[])
         exit(40);
     }
 
-    
-    
     H->solve();
 
     H->save("Output/Results_" + H->name() + "_" + to_string(I->qos())+"_"+to_string(P->getParamIntValue(ParamCompObject::timlim)) + ".txt");
