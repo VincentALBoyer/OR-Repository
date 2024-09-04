@@ -134,13 +134,7 @@ class Instance
 
 	string tostring(tour* T);
 
-	static void genDataFile(Parameter* Param);
-
-	static void genInstanceFile(Parameter* Param);
-
 public:
-
-	static void genRequiredFile(Parameter *Param);
 
 	Instance(Parameter *Param);
 
