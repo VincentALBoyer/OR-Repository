@@ -1,0 +1,26 @@
+*********************************************************************************
+Orienteering problem with mandatory visits and exclusionary constraints instances
+*********************************************************************************
+
+The first line contains the following data:
+T M D
+
+Where:
+	T:= time limit
+	M:= distance metric:
+		0: Euclidean
+		1: Pseudo-euclidean
+		2: Defined as in Fichetti et al. 1998 "Solving the orienteering problem through branch and cut"
+		3: Geographical 
+	D:= number of depots. If 1, the route starts and ends at node 0. If 2, the route starts at 0 and ends at 1.
+
+The next lines constain:
+id x y s t I
+
+Where:
+	id:= node ID
+	x := x coordinate
+	y:= y coordinate
+	s:= score
+	t:= type, 0 if optional, 1 if mandatory
+	I:= the remaining numbers are the nodes that are incompatible with the current node

@@ -1,13 +1,4 @@
-//
-//  Header.h
-//  Heur_SFP
-//
-//  Created by Vincent on 11/6/15.
-//
-//
-
-#ifndef Header_h
-#define Header_h
+#pragma once
 
 #include <string>
 #include <ilconcert/iloenv.h>
@@ -99,5 +90,3 @@ ForwardIterator RouletteWheelSelection (ForwardIterator first, ForwardIterator l
     assert(first!=last);
     return first;
 }
-
-#endif /* Header_h */

@@ -1,0 +1,40 @@
+================================================================================
+ORIENTEERING PROBLEM WITH MANDATORY VISITS AND CONFLICTS - INSTANCE FORMAT
+================================================================================
+
+HEADER INFORMATION:
+-------------------
+n <count>     -> Number of nodes (customers + 2 depot nodes: departure + arrival)
+m <count>     -> Number of vehicles
+tmax <value>  -> Maximum travel time limit per vehicle
+
+NODE DATA:
+----------
+Each node is defined by a line with 5 values:
+  <x>  <y>  <score>  <vehicle1_compatible>  <vehicle2_compatible>
+
+  x, y            : Euclidean coordinates
+  score           : Reward/profit value for visiting this node (0 for depots)
+  vehicle1_compat : Binary flag (1 = vehicle 1 can visit, 0 = cannot visit)
+  vehicle2_compat : Binary flag (1 = vehicle 2 can visit, 0 = cannot visit)
+
+SPECIAL NODES:
+--------------
+Line 1 (after header): Departure depot node (routes must start here)
+Last line            : Arrival depot node (routes must end here)
+
+Depot compatibility flags are ignored - every route MUST depart from and return 
+to the depot nodes.
+
+EXAMPLE:
+--------
+n 21       -> 21 nodes total (19 customers + 2 depot nodes)
+m 2        -> 2 vehicles
+tmax 16.0  -> 16.0 hour time limit per vehicle
+
+Departure depot:    x=4.6,  y=7.1,  score=0  (vehicle 1 and 2 both allowed)
+Customer 1:         x=5.7,  y=11.4, score=20 (vehicle 1 and 2 both allowed)
+Customer 2:         x=4.4,  y=12.3, score=20 (vehicle 1 only)
+...
+Arrival depot:      x=5,    y=5.6,  score=0  (vehicle 1 and 2 both allowed)
+

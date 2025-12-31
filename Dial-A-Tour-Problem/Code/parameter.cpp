@@ -44,14 +44,13 @@ string ParameterComponent::tostring() {
 		s << setw(w) << "-" + _name + "=" << setw(2 * w) << _description;
 		if (_d_val != "" || _isUserDefined) {
 			s << " (";
-			//if (_d_val != "") s << "default value: " << _d_val;
-			//if (_d_val != "" && _isUserDefined) s << " - ";
+
 			if (_isUserDefined) s << "user value: " << _val;
 			else s << "default value: " << _d_val;
 			s << ")";
 		}
 	}
-	//if (_d_val!="") s << "(default value: " << _d_val << ")";
+
 	return s.str();
 }
 

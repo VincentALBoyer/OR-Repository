@@ -718,7 +718,6 @@ bool Solution::advancedBestInsertion(operation* pickup)
 		insertafter(pickup, delivery);
 		assert(update());
 	}
-	//else revert();
 
 	return (besto!=NULL);
 }

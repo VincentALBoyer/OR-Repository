@@ -57,16 +57,14 @@ void LocalSearch::solvemethod()
 void LocalSearch::initsolver(Solution* S)
 {
 	if (S != NULL) _S=new Solution(S);
-	
 }
 
 Solution* LocalSearch::getBestNeiborhood(Solution* S)
 {
 	assert(S != NULL);
-	//Solution* best = new Solution(S);
 	Solution* best = new Solution(S);
 
-	//Collecting the routes
+	// Collecting the routes
 	double* length = new double[S->nop()];
 	vector<int> firstopid;
 	for (int i = 0; i < best->nop(); ++i) {
