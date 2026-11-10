@@ -79,13 +79,19 @@ operations; by Horn's theorem it meets every window end if and only if the machi
 
 **Decoding and checking.** `check_solution.py` (Python 3, no dependencies) rebuilds the fragments and checks the
 schedule: eligible machines, processing times, windows (hence the job order), no overlap on any machine, and the
-makespan. It reads the instances in the usual flexible job shop text format (first line `<jobs> <machines>`; then
-one line per job: `<operations>`, then for each operation `<eligible machines>` followed by the pairs
-`<machine> <processing time>`, machines numbered from 0). The instance files are not included in this folder.
+makespan. The instance files are not included in this folder; it reads them in either format, detected automatically:
+
+- pFJSSP: the usual flexible job shop text format (first line `<jobs> <machines>`; then one line per job:
+  `<operations>`, then for each operation `<eligible machines>` followed by the pairs `<machine> <processing time>`,
+  machines numbered from 0);
+- pJSSP: the standard job shop format of JSPLIB (`github.com/tamy0612/JSPLIB`, files `instances/<name>`: lines
+  starting with `#` ignored, `<jobs> <machines>`, then one line per job of `<machine> <processing time>` pairs,
+  machines numbered from 0), or the same instance in the flexible format with one eligible machine per operation.
 
 ```sh
 # one instance of a collection; --fragments prints the fragments [start, end) of every operation
-python3 check_solution.py mk01.txt solutions_pfjssp276.json mk01 --fragments
+python3 check_solution.py mk01.txt solutions_pfjssp276.json mk01 --fragments   # pFJSSP
+python3 check_solution.py JSPLIB/instances/ft10 solutions_pjssp78.json ft10    # pJSSP, JSPLIB file
 ```
 
 Notes on the instances: `dpp04` is the file `04a.txt` of the Dauzère-Pérès & Paulli set (bounds as reported for

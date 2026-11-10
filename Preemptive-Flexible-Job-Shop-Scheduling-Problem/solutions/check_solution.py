@@ -26,9 +26,16 @@ import sys
 
 
 def read_instance(path):
-    """Returns (n_machines, jobs), jobs[j][k] = {machine: processing time} of the k-th operation of job j."""
+    """Returns (n_machines, jobs), jobs[j][k] = {machine: processing time} of the k-th operation of job j.
+    Reads the flexible job shop format, or the standard job shop format of JSPLIB (lines starting with # ignored;
+    `<jobs> <machines>`, then one line per job of <machine> <processing time> pairs, machines numbered from 0)."""
     with open(path) as f:
-        tokens = f.read().split()
+        lines = [l.split() for l in f if l.strip() and not l.lstrip().startswith("#")]
+    head = lines[0]
+    if len(head) == 2 and len(lines) == 1 + int(head[0]) and all(len(l) == 2 * int(head[1]) for l in lines[1:]):
+        jobs = [[{int(l[2 * k]): int(l[2 * k + 1])} for k in range(int(head[1]))] for l in lines[1:]]
+        return int(head[1]), jobs
+    tokens = [t for l in lines for t in l]
     pos = 0
 
     def nxt():
